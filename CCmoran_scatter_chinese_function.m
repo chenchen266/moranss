@@ -1,12 +1,13 @@
-function moran_scatter_chinese=CCmoran_scatter_chinese_function(x,W,region) %x为输入变量，W为空间权重矩阵
+function moran_scatter_chinese=CCmoran_scatter_chinese_function(x,W,rawdata) 
 
 
-% CC于2021年4月编写于广东省委党校，版权归属于广东省委党校416寝室CC
-%有问题邮箱联系：econometrical@163.com
+%2020年4月首版编写于“云上”广东省委党校。更新于2021年4月28日。
+%版权归属于广东省委党校416寝室CC所有，不得用于除学习以外的其他用途。
+%有问题邮箱联系：econometrical@163.com。
 
-
-w = normw(W);%行标准化
-zx=(x-mean(x))/std(x);
+[N t]=size(x);
+w = normw(W);
+zx=zscore(x);
 wzx=w*zx;
 scatter(zx,wzx,'filled');
 axis([-2,4,-1,2])
@@ -24,8 +25,8 @@ title(['Moran’s I = ',num2str(moran_I,'%8.4f')]);
 %%title(['Moran’s I = ',b]);
 hold on
 
-id = region';
-for i = (1:30)
+id = rawdata;
+for i = (1:N)
 text(zx(i),wzx(i),id{i});
 end
 hold on

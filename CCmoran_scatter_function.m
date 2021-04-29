@@ -1,12 +1,13 @@
 function moran_scatter=CCmoran_scatter_function(x,W) %x为输入变量，W为空间权重矩阵
 
 
-% CC于2021年4月编写于广东省委党校，版权归属于广东省委党校416寝室CC
-%有问题邮箱联系：econometrical@163.com
+% CC于2021年4月编写于广东省委党校。
+%版权归属于广东省委党校416寝室CC所有，不得用于除学习以外的其他用途。
+%有问题邮箱联系：econometrical@163.com。
 
 
 w = normw(W);%行标准化
-zx=(x-mean(x))/std(x);
+zx=zscore(x);
 wzx=w*zx;
 scatter(zx,wzx,'filled');
 axis([-2,4,-1,2])
